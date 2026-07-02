@@ -1902,8 +1902,8 @@
                 loaderPct.textContent = Math.floor(_loaderProgress) + '%';
             }, 80);
 
-            // Fire when ALL resources (images, fonts, scripts) are fully loaded
-            window.addEventListener('load', () => {
+            // Fire as soon as the browser parses the HTML and CSS (much faster than waiting for huge images)
+            document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(loaderIv);
                 loaderBar.style.width = '100%';
                 loaderPct.textContent = '100%';
