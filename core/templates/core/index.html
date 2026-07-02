@@ -1896,16 +1896,19 @@
             ------------------------------------------- */
             let lenis;
             try {
-                lenis = new Lenis({
-                    duration: 1.35,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    smoothWheel: true,
-                });
-                function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
-                requestAnimationFrame(lenisRaf);
-                lenis.on('scroll', ScrollTrigger.update);
-                gsap.ticker.add((time) => lenis.raf(time * 1000));
-                gsap.ticker.lagSmoothing(0);
+                // Only enable JS smooth scrolling on desktop devices
+                if (window.innerWidth > 768) {
+                    lenis = new Lenis({
+                        duration: 1.35,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        smoothWheel: true,
+                    });
+                    function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
+                    requestAnimationFrame(lenisRaf);
+                    lenis.on('scroll', ScrollTrigger.update);
+                    gsap.ticker.add((time) => lenis.raf(time * 1000));
+                    gsap.ticker.lagSmoothing(0);
+                }
             } catch (e) {
                 console.warn('Lenis smooth scroll unavailable, using native scroll.', e);
             }
@@ -1957,36 +1960,49 @@
             let orbs = [];
 
             function initOrbs() {
-                orbs = ORB_DEFS.map(d => ({
-                    ...d, x: W * d.sx, y: H * d.sy,
-                }));
+                orbs = ORB_DEFS.map(d => {
+                    const off = document.createElement('canvas');
+                    const r = d.rad;
+                    off.width = r * 2;
+                    off.height = r * 2;
+                    const oCtx = off.getContext('2d');
+                    const g = oCtx.createRadialGradient(r, r, 0, r, r, r);
+                    g.addColorStop(0, `rgba(${d.r},${d.g},${d.b},0.14)`);
+                    g.addColorStop(0.45, `rgba(${d.r},${d.g},${d.b},0.06)`);
+                    g.addColorStop(1, `rgba(${d.r},${d.g},${d.b},0)`);
+                    oCtx.fillStyle = g;
+                    oCtx.beginPath();
+                    oCtx.arc(r, r, r, 0, Math.PI * 2);
+                    oCtx.fill();
+                    return { ...d, x: W * d.sx, y: H * d.sy, cache: off };
+                });
             }
 
+            // Debounce resize for performance
+            let resizeTimer;
             function resizeCanvas() {
-                W = canvas.width = canvas.offsetWidth;
-                H = canvas.height = canvas.offsetHeight;
-                initOrbs();
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    W = canvas.width = canvas.offsetWidth;
+                    H = canvas.height = canvas.offsetHeight;
+                    initOrbs();
+                }, 150);
             }
 
             window.addEventListener('resize', resizeCanvas, { passive: true });
-            resizeCanvas();
+            // Initial call without debounce
+            W = canvas.width = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+            initOrbs();
 
             function drawFrame(ts) {
                 if (window.scrollY <= window.innerHeight * 1.5) {
                     const t = ts * 0.001;
                     ctx.clearRect(0, 0, W, H);
-
                     orbs.forEach(o => {
                         const cx = o.x + Math.sin(t * o.speed * 1000 + o.phase) * 75;
                         const cy = o.y + Math.cos(t * o.speed * 850 + o.phase) * 55;
-                        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, o.rad);
-                        g.addColorStop(0, `rgba(${o.r},${o.g},${o.b},0.14)`);
-                        g.addColorStop(0.45, `rgba(${o.r},${o.g},${o.b},0.06)`);
-                        g.addColorStop(1, `rgba(${o.r},${o.g},${o.b},0)`);
-                        ctx.fillStyle = g;
-                        ctx.beginPath();
-                        ctx.arc(cx, cy, o.rad, 0, Math.PI * 2);
-                        ctx.fill();
+                        ctx.drawImage(o.cache, cx - o.rad, cy - o.rad);
                     });
                 }
                 requestAnimationFrame(drawFrame);
