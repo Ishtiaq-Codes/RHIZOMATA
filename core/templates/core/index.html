@@ -15,57 +15,28 @@
         content="A mystical, philosophical premium physical board game created by Amna Noor." />
     <meta property="og:type" content="website" />
 
-    <!-- Preload Critical Assets -->
+    <!-- Preload critical font subsets to avoid flash of invisible text -->
     <link rel="preload" href="{% static 'core/assets/logo.svg' %}" as="image" type="image/svg+xml" />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- font-display=swap prevents blank text while fonts load -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet" />
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet" /></noscript>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN removed for production: replaced with vanilla CSS below -->
 
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'bg-main': '#0B131F',
-                        'bg-dark': '#000000',
-                        'text-primary': '#C4CACC',
-                        'text-muted': '#8A959E',
-                        'r-purple': '#65416C',
-                        'r-orange': '#D16834',
-                        'r-green': '#3F5E3D',
-                        'r-teal': '#1E8AA8',
-                    },
-                    fontFamily: {
-                        cinzel: ['Cinzel', 'serif'],
-                        'cinzel-deco': ['Cinzel Decorative', 'serif'],
-                        playfair: ['Playfair Display', 'serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                },
-            },
-        };
-    </script>
+    <!-- GSAP CDN — deferred to not block page render -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Lenis Smooth Scroll CDN -->
     <!-- Lenis Smooth Scroll CDN (with fallback) -->
     <script>
-        // Polyfill: if Lenis fails to load, provide a no-op stub so the page still works
         window.__lenisLoaded = false;
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" onload="window.__lenisLoaded=true"
-        onerror="window.Lenis=function(o){this.raf=function(){};this.on=function(){};this.destroy=function(){};}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" onload="window.__lenisLoaded=true"
+        onerror="window.Lenis=function(o){this.raf=function(){};this.on=function(){};this.destroy=function(){};}" ></script>
 
     <style>
         /* =============================================
@@ -461,6 +432,9 @@
             text-decoration: none;
             transition: all 0.35s ease;
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            /* Promote to GPU layer to prevent layout paint on hover */
+            transform: translateZ(0);
         }
 
         .btn-ghost:hover {
@@ -1088,7 +1062,45 @@
         }
 
         /* =============================================
-       NAV LOGO WITH IMAGE
+           TAILWIND UTILITY REPLACEMENTS
+           (Tailwind CDN removed — these replace used classes)
+        ============================================= */
+        .max-w-7xl { max-width: 80rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-16 { gap: 4rem; }
+        .gap-10 { gap: 2.5rem; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .relative { position: relative; }
+        .z-10 { z-index: 10; }
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .hidden { display: none !important; }
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .lg\:flex { display: flex !important; }
+        }
+
+        /* =============================================
+           GPU ACCELERATION HINTS
+        ============================================= */
+        #hero-canvas, .hero-rune-ring,
+        .feature-card, .concept-card,
+        .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
+            will-change: transform, opacity;
+        }
+
+        /* =============================================
+           NAV LOGO WITH IMAGE
     ============================================= */
         .nav-logo-wrap {
             display: flex;
@@ -1866,30 +1878,42 @@
             const loaderPct = document.getElementById('loader-percent');
             let progress = 0;
 
-            const loaderIv = setInterval(() => {
-                progress += Math.random() * 18 + 5;
-                if (progress >= 100) progress = 100;
-                loaderBar.style.width = progress + '%';
-                loaderPct.textContent = Math.floor(progress) + '%';
-                if (progress >= 100) {
-                    clearInterval(loaderIv);
-                    setTimeout(hideLoader, 280);
-                }
-            }, 75);
-
+            // --- Use real page load events so loader NEVER gets stuck ---
             function hideLoader() {
                 if (typeof gsap === 'undefined') {
                     loader.style.display = 'none';
-                    const els = document.querySelectorAll('.hero-eyebrow, .hero-title, .hero-subtitle, .hero-buttons, .hero-scroll-indicator');
-                    els.forEach(el => { if(el) { el.style.opacity = 1; el.style.transform = 'none'; } });
+                    document.querySelectorAll('.hero-eyebrow, .hero-title, .hero-subtitle, .hero-buttons, .hero-scroll-indicator')
+                        .forEach(el => { if(el) { el.style.opacity = 1; el.style.transform = 'none'; } });
                     initPage();
                     return;
                 }
                 gsap.to(loader, {
-                    opacity: 0, duration: 0.75, ease: 'power2.inOut',
+                    opacity: 0, duration: 0.6, ease: 'power2.inOut',
                     onComplete: () => { loader.style.display = 'none'; initPage(); }
                 });
             }
+
+            // Animate the loader bar while page resources are loading
+            let _loaderProgress = 0;
+            const loaderIv = setInterval(() => {
+                _loaderProgress += Math.random() * 15 + 8;
+                if (_loaderProgress >= 90) _loaderProgress = 90; // cap at 90, real load event will finish it
+                loaderBar.style.width = _loaderProgress + '%';
+                loaderPct.textContent = Math.floor(_loaderProgress) + '%';
+            }, 80);
+
+            // Fire when ALL resources (images, fonts, scripts) are fully loaded
+            window.addEventListener('load', () => {
+                clearInterval(loaderIv);
+                loaderBar.style.width = '100%';
+                loaderPct.textContent = '100%';
+                setTimeout(hideLoader, 250);
+            });
+
+            // Safety net: force-hide after 5s on any device, no matter what
+            setTimeout(() => {
+                if (loader && loader.style.display !== 'none') { hideLoader(); }
+            }, 5000);
 
             /* -------------------------------------------
                2. LENIS SMOOTH SCROLL

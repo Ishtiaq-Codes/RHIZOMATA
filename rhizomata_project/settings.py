@@ -120,3 +120,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# WhiteNoise: serve compressed files and cache for 1 year in browsers
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = False
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
