@@ -391,10 +391,11 @@
         .hero-noise-overlay {
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMd+K4AAAACHRSTlMA////////wAP0Z6QAAADhSURBVDjLjZI9D4MwDIXjZ6D+h1QyN3eYkFp1w8DAxMTc//9nKSEoHVLp1B6SfLbnfD5X1xY7c6p4c7o7M9d7Y48W9mHw8w5j2X2c3Z68O9gHwc87jGb1cHR98i7gw+DnDUazuDi5PnoV8Gbw6wajWTwclZ+8F/gw+HWD0awuju5PXoX7b/B/M5rFw8n7kzfg/hv8G41m9XB2f3IV8Gbwa0Qzujg7vzi5PnoV8GbwK0Uzejh5e/Iq4M3g14tmcXL6+OTl5BXgm8GvGM3k5PTxydvJawFfB/t3G83m5PHlyduT1wFfB/t+qV/uGz+B379RjwAAAABJRU5ErkJggg==");
+            background-repeat: repeat;
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.3;
+            z-index: 1;
         }
 
         .hero-content {
@@ -598,12 +599,14 @@
 
         .concept-bg-accent {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 800px;
+            height: 800px;
             border-radius: 50%;
-            filter: blur(130px);
+            background: radial-gradient(circle, var(--color) 0%, transparent 60%);
             opacity: 0.06;
             pointer-events: none;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .section-label {
@@ -1060,6 +1063,7 @@
         .reveal-left,
         .reveal-right,
         .reveal-scale {
+            will-change: transform, opacity;
             /* initial state handled by GSAP */
         }
 
@@ -1597,51 +1601,48 @@
             const loader = document.getElementById('page-loader');
             const loaderBar = document.getElementById('loader-bar');
             const loaderPct = document.getElementById('loader-percent');
-            if (!sessionStorage.getItem('visited')) {
-                let progress = 0;
-                const loaderIv = setInterval(() => {
-                    progress += Math.random() * 25 + 15;
-                    if (progress >= 100) progress = 100;
-                    loaderBar.style.width = progress + '%';
-                    loaderPct.textContent = Math.floor(progress) + '%';
-                    if (progress >= 100) {
-                        clearInterval(loaderIv);
-                        setTimeout(hideLoader, 150);
-                    }
-                }, 40);
-
-                function hideLoader() {
-                    gsap.to(loader, {
-                        opacity: 0, duration: 0.5, ease: 'power2.inOut',
-                        onComplete: () => { 
-                            loader.style.display = 'none'; 
-                            sessionStorage.setItem('visited', 'true');
-                            initPage(); 
-                        }
-                    });
+            let progress = 0;
+            const loaderIv = setInterval(() => {
+                progress += Math.random() * 18 + 5;
+                if (progress >= 100) progress = 100;
+                loaderBar.style.width = progress + '%';
+                loaderPct.textContent = Math.floor(progress) + '%';
+                if (progress >= 100) {
+                    clearInterval(loaderIv);
+                    setTimeout(hideLoader, 280);
                 }
-            } else {
-                loader.style.display = 'none';
-                initPage();
+            }, 75);
+
+            function hideLoader() {
+                gsap.to(loader, {
+                    opacity: 0, duration: 0.75, ease: 'power2.inOut',
+                    onComplete: () => { loader.style.display = 'none'; initPage(); }
+                });
             }
 
             /* -------------------------------------------
                2. LENIS SMOOTH SCROLL
             ------------------------------------------- */
+            const isMobile = window.innerWidth < 768 || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+            
             let lenis;
-            try {
-                lenis = new Lenis({
-                    duration: 1.35,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    smoothWheel: true,
-                });
-                function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
-                requestAnimationFrame(lenisRaf);
-                lenis.on('scroll', ScrollTrigger.update);
-                gsap.ticker.add((time) => lenis.raf(time * 1000));
-                gsap.ticker.lagSmoothing(0);
-            } catch (e) {
-                console.warn('Lenis smooth scroll unavailable, using native scroll.', e);
+            if (!isMobile) {
+                try {
+                    lenis = new Lenis({
+                        duration: 1.35,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        smoothWheel: true,
+                    });
+                    function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
+                    requestAnimationFrame(lenisRaf);
+                    lenis.on('scroll', ScrollTrigger.update);
+                    gsap.ticker.add((time) => lenis.raf(time * 1000));
+                    gsap.ticker.lagSmoothing(0);
+                } catch (e) {
+                    console.warn('Lenis smooth scroll unavailable, using native scroll.', e);
+                }
+            } else {
+                console.log('Mobile/Slow device detected: Lenis disabled for performance.');
             }
 
             /* -------------------------------------------
@@ -1706,6 +1707,7 @@
             resizeCanvas();
 
             function drawFrame(ts) {
+                if (isMobile) return; // Prevent heavy canvas loop on mobile
                 const t = ts * 0.001;
                 ctx.clearRect(0, 0, W, H);
 
@@ -1742,14 +1744,13 @@
 
                 // --- Generic scroll reveals using fromTo (explicit start + end states) ---
                 function addReveal(selector, fromVars, toVars) {
-                    gsap.utils.toArray(selector).forEach((el, i) => {
+                    gsap.utils.toArray(selector).forEach((el) => {
                         gsap.fromTo(el,
                             fromVars,
                             {
                                 ...toVars,
-                                duration: 0.35, ease: 'power3.out',
-                                delay: i * 0.05,
-                                scrollTrigger: { trigger: el, start: 'top 98%', toggleActions: 'play none none none' },
+                                duration: 0.95, ease: 'power3.out',
+                                scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
                             }
                         );
                     });

@@ -5,7 +5,7 @@ class SiteSettings(models.Model):
     # Singleton Model to hold global settings
     
     # Hero Section
-    hero_eyebrow = models.CharField(max_length=100, default="A Tabletop Board Game Design Project by Amna Noor")
+    hero_eyebrow = models.CharField(max_length=100, default="A Tabletop Board Game Design by Amna Noor")
     hero_title = models.CharField(max_length=100, default="RHIZOMATA")
     hero_subtitle = models.TextField(default="Destiny is not given. It is chosen.\nThe tension is not informational. It is moral.")
     
