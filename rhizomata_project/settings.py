@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_mzz5c77i**8%ts82&lcm#kany9-)oxqm9_!jk)u8@w9w-xp+7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rhizomata.net', 'www.rhizomata.net', 'localhost', '127.0.0.1']
 
 
 # Application definition
