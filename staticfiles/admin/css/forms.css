@@ -217,8 +217,7 @@ fieldset .fieldBox {
 
 /* WIDE FIELDSETS */
 
-.wide label,
-.wide legend {
+.wide label {
     width: 200px;
 }
 

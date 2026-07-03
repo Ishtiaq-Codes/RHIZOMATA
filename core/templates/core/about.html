@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="about-page" style="padding: 10rem 1.5rem 8rem; background: var(--bg-main); position: relative; overflow: hidden; min-height: 80vh;">
+    <div class="concept-bg-accent" style="background:var(--color-orange);top:-120px;left:-160px;" aria-hidden="true"></div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        <span class="section-label reveal-up">The Philosophy</span>
+        <h1 class="section-heading reveal-up mb-8">About the Game</h1>
+        
+        <blockquote class="concept-pull-quote reveal-up mb-12">
+            "In the rhizome, there is no beginning or end — only the middle, from which it grows and overflows."
+        </blockquote>
+
+        <div class="text-left space-y-8 reveal-up">
+            <p class="text-gray-300 font-['Inter'] text-lg leading-relaxed">
+                <strong>Rhizomata</strong> is a philosophical strategy game rooted in the ancient Greek concept of interconnected elements — earth, water, fire, and air — reimagined as a premium physical experience.
+            </p>
+            
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-8 mb-4">What Makes Rhizomata Unique</h3>
+            <p class="text-gray-300 font-['Inter'] text-lg leading-relaxed">
+                Most games use chance — dice, card draws, random events — as the primary engine of excitement. Rhizomata proposes a different approach: <strong>all consequences are visible before every choice is made.</strong>
+            </p>
+            <p class="text-gray-300 font-['Inter'] text-lg leading-relaxed">
+                There are no hidden reveals, no dice, no luck in the result of any decision. The tension is not informational. It is moral. Every person is a hostage to what they have earned. Each card you hold is a fragment of a larger living tapestry. Every decision ripples outward, reshaping the shared world around you. 
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-8 mb-4">Core Gameplay Overview</h3>
+            <p class="text-gray-300 font-['Inter'] text-lg leading-relaxed">
+                Play is not merely competitive — it is meditative, narrative, and deeply symbolic. You are bound to an element, and you must balance your Ambition and Stability pawns in response to the moral situations that arise on the board.
+            </p>
+            
+            <div class="mt-16 text-center border-t border-white/10 pt-10">
+                <p class="text-xl font-['Cinzel'] text-orange-400">Created by Amna Noor</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

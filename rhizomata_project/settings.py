@@ -22,24 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-_mzz5c77i**8%ts82&lcm#kany9-)oxqm9_!jk)u8@w9w-xp+7'
 
-import os
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
+    'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +120,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise: serve compressed files and cache for 1 year in browsers
 WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = False
+WHITENOISE_AUTOREFRESH = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="order-page" style="padding: 10rem 1.5rem 8rem; background: var(--bg-main); min-height: 100vh;">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Product Image -->
+            <div class="reveal-right">
+                <img src="{% static 'core/assets/game board.webp' %}" alt="Rhizomata Game Box and Board" class="w-full h-auto rounded-xl shadow-2xl" style="border: 1px solid rgba(255,255,255,0.05);">
+            </div>
+
+            <!-- Product Details -->
+            <div class="reveal-up">
+                <span class="section-label">Pre-Order Now</span>
+                <h1 class="section-heading mb-6">Rhizomata: The Core Set</h1>
+                
+                <p class="text-gray-400 font-['Inter'] leading-relaxed mb-8">
+                    Secure your copy of the mystical, philosophical strategy game. The Core Set includes the interconnected game board, 4 elemental Identity cards, 40 Situation cards, beautifully crafted pawns, and the comprehensive Rulebook.
+                </p>
+
+                <div class="text-4xl font-['Cinzel'] text-white mb-8">$79.00 <span class="text-lg text-gray-500 font-['Inter']">USD</span></div>
+
+                <!-- Order Form -->
+                <form class="space-y-6">
+                    <div>
+                        <label for="quantity" class="block text-sm font-medium text-gray-400 font-['Inter'] mb-2">Quantity</label>
+                        <select id="quantity" name="quantity" class="w-full bg-black/40 border border-white/10 rounded-md px-4 py-3 text-white font-['Inter'] focus:outline-none focus:border-teal-500 transition-colors">
+                            <option value="1">1 Set</option>
+                            <option value="2">2 Sets</option>
+                            <option value="3">3 Sets</option>
+                            <option value="4">4 Sets</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="button" class="w-full btn-primary py-4 text-lg justify-center flex items-center">
+                            Secure Checkout (SSL Enabled)
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-white/10">
+                    <h4 class="text-white font-['Cinzel'] mb-4">Shipping Information</h4>
+                    <p class="text-sm text-gray-400 font-['Inter'] leading-relaxed">
+                        Worldwide shipping available. Estimated delivery starts Q4 2026. You will receive tracking information once your order leaves our fulfillment center.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

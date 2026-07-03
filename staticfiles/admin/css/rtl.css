@@ -124,8 +124,7 @@ thead th.sorted .text {
 
 /* FORMS */
 
-.aligned label,
-.aligned legend {
+.aligned label {
     padding: 0 0 3px 1em;
 }
 

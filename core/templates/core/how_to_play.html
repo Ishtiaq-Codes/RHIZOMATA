@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="how-to-play" style="padding: 10rem 1.5rem 8rem; background: var(--bg-main); position: relative; overflow: hidden; min-height: 80vh;">
+    <div class="concept-bg-accent" style="background:var(--color-orange);top:10%;left:-100px;opacity:0.04;" aria-hidden="true"></div>
+    <div class="concept-bg-accent" style="background:var(--color-teal);bottom:10%;right:-100px;opacity:0.04;" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10 text-center">
+        <span class="section-label reveal-up">Rules of the Realm</span>
+        <h1 class="section-heading reveal-up mb-12">How to Play</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left mt-16">
+            <div class="p-8 border border-white/5 bg-white/5 rounded-xl backdrop-blur-sm reveal-up">
+                <h3 class="text-2xl font-['Cinzel'] text-orange-400 mb-4">1. Choose Your Identity</h3>
+                <p class="text-gray-400 leading-relaxed font-['Inter']">Begin by drawing an Identity Card. You are bound to an element — Earth, Water, Fire, or Air. This is your anchor, determining your strengths and vulnerabilities in the game.</p>
+            </div>
+            
+            <div class="p-8 border border-white/5 bg-white/5 rounded-xl backdrop-blur-sm reveal-up" style="transition-delay: 0.1s;">
+                <h3 class="text-2xl font-['Cinzel'] text-purple-400 mb-4">2. Read the Situation</h3>
+                <p class="text-gray-400 leading-relaxed font-['Inter']">Draw a Situation Card to reveal the moral and tactical challenges facing your realm. Your response must align with your true nature.</p>
+            </div>
+            
+            <div class="p-8 border border-white/5 bg-white/5 rounded-xl backdrop-blur-sm reveal-up" style="transition-delay: 0.2s;">
+                <h3 class="text-2xl font-['Cinzel'] text-teal-400 mb-4">3. Move Your Pawns</h3>
+                <p class="text-gray-400 leading-relaxed font-['Inter']">Control two pawns simultaneously: Stability and Ambition. Navigate the interconnected board. Every move ripples outwards, shifting the balance of the board for everyone.</p>
+            </div>
+        </div>
+
+        <div class="mt-20 p-10 border border-white/10 bg-black/40 rounded-2xl max-w-4xl mx-auto reveal-up">
+            <h3 class="text-3xl font-['Cinzel'] text-white mb-6 text-center">Winning the Game</h3>
+            <p class="text-gray-300 leading-relaxed font-['Inter'] text-lg text-center">
+                Victory is not simply reaching the center first. True mastery requires perfectly balancing your Ambition and Stability pawns while honoring your elemental Identity. The player whose choices best reflect their true nature claims the realm.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

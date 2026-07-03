@@ -1,6 +1,22 @@
 from django.shortcuts import render
-from django.views.decorators.cache import cache_page
 
-@cache_page(60 * 60 * 24) # Cache the landing page for 24 hours
 def index(request):
     return render(request, 'core/index.html')
+
+def how_to_play(request):
+    return render(request, 'core/how_to_play.html')
+
+def preview(request):
+    return render(request, 'core/preview.html')
+
+def order(request):
+    return render(request, 'core/order.html')
+
+def contact(request):
+    return render(request, 'core/contact.html')
+
+def about(request):
+    return render(request, 'core/about.html')
+
+def gallery(request):
+    return render(request, 'core/gallery.html')

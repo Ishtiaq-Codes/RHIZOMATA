@@ -1,0 +1,161 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+    }
+    .gallery-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+    .gallery-img {
+        width: 100%;
+        height: 350px;
+        object-fit: contain;
+        padding: 1.5rem;
+        transition: transform 0.5s ease;
+    }
+    .gallery-item:hover .gallery-img {
+        transform: scale(1.05);
+    }
+    .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        font-family: 'Inter', sans-serif;
+        color: #fff;
+        text-align: center;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+    }
+
+    /* Modal CSS */
+    #gallery-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 7, 10, 0.95);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    #gallery-modal.show {
+        display: flex;
+        opacity: 1;
+    }
+    #modal-img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+    .modal-close {
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        color: #fff;
+        font-size: 2.5rem;
+        cursor: pointer;
+        font-family: sans-serif;
+    }
+</style>
+
+<section id="preview-gallery" style="padding: 10rem 1.5rem 8rem; background: var(--bg-main); min-height: 100vh;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+            <span class="section-label reveal-up">The Artifacts</span>
+            <h1 class="section-heading reveal-up">Game Components</h1>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto font-['Inter'] reveal-up">Explore the premium components of Rhizomata. Click any item to view its intricate details.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Board -->
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/game board.webp' %}')">
+                <img src="{% static 'core/assets/game board.webp' %}" class="gallery-img" loading="lazy" alt="Game Board">
+                <div class="gallery-caption">The Main Game Board</div>
+            </div>
+
+            <!-- Identity Cards -->
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (fire).webp' %}')">
+                <img src="{% static 'core/assets/identity card front (fire).webp' %}" class="gallery-img" loading="lazy" alt="Fire Identity Card">
+                <div class="gallery-caption">Identity Card (Fire)</div>
+            </div>
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (water).webp' %}')">
+                <img src="{% static 'core/assets/identity card front (water).webp' %}" class="gallery-img" loading="lazy" alt="Water Identity Card">
+                <div class="gallery-caption">Identity Card (Water)</div>
+            </div>
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (earth).webp' %}')">
+                <img src="{% static 'core/assets/identity card front (earth).webp' %}" class="gallery-img" loading="lazy" alt="Earth Identity Card">
+                <div class="gallery-caption">Identity Card (Earth)</div>
+            </div>
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (air).webp' %}')">
+                <img src="{% static 'core/assets/identity card front (air).webp' %}" class="gallery-img" loading="lazy" alt="Air Identity Card">
+                <div class="gallery-caption">Identity Card (Air)</div>
+            </div>
+
+            <!-- Situation Cards -->
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/fire situation card front.webp' %}')">
+                <img src="{% static 'core/assets/fire situation card front.webp' %}" class="gallery-img" loading="lazy" alt="Fire Situation Card">
+                <div class="gallery-caption">Situation Card (Fire)</div>
+            </div>
+            
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/water situation card front.webp' %}')">
+                <img src="{% static 'core/assets/water situation card front.webp' %}" class="gallery-img" loading="lazy" alt="Water Situation Card">
+                <div class="gallery-caption">Situation Card (Water)</div>
+            </div>
+
+            <!-- Context Card -->
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/context card front.webp' %}')">
+                <img src="{% static 'core/assets/context card front.webp' %}" class="gallery-img" loading="lazy" alt="Context Card">
+                <div class="gallery-caption">Context Card</div>
+            </div>
+
+            <!-- Backs -->
+            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card back.webp' %}')">
+                <img src="{% static 'core/assets/identity card back.webp' %}" class="gallery-img" loading="lazy" alt="Card Back">
+                <div class="gallery-caption">Identity Card Back</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fullscreen Modal -->
+<div id="gallery-modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img id="modal-img" src="" alt="Enlarged view">
+</div>
+
+<script>
+    function openModal(imgSrc) {
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('modal-img');
+        modalImg.src = imgSrc;
+        modal.classList.add('show');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('gallery-modal');
+        modal.classList.remove('show');
+    }
+</script>
+{% endblock %}
