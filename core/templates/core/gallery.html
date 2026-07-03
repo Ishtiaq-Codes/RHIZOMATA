@@ -56,36 +56,45 @@
         </div>
 
         <div class="photo-grid">
-            <!-- Using existing assets as mockups for the gallery -->
-            <div class="photo-item reveal-up">
-                <img src="{% static 'core/assets/game board.webp' %}" alt="Gameplay Setup" loading="lazy" style="object-fit: contain; padding: 2rem;">
-                <div class="photo-caption">Full Board Setup</div>
-            </div>
-            
-            <div class="photo-item reveal-up" style="transition-delay: 0.1s;">
-                <img src="{% static 'core/assets/identity card back.webp' %}" alt="Card Details" loading="lazy" style="object-fit: contain; padding: 1rem;">
-                <div class="photo-caption">Identity Card Details</div>
-            </div>
-            
-            <div class="photo-item reveal-up" style="transition-delay: 0.2s;">
-                <img src="{% static 'core/assets/fire situation card front.webp' %}" alt="Promotional Artwork" loading="lazy" style="object-fit: contain; padding: 1rem;">
-                <div class="photo-caption">Fire Element Artwork</div>
-            </div>
-            
-            <div class="photo-item reveal-up">
-                <img src="{% static 'core/assets/water situation card front.webp' %}" alt="Water Element" loading="lazy" style="object-fit: contain; padding: 1rem;">
-                <div class="photo-caption">Water Element Artwork</div>
-            </div>
-            
-            <div class="photo-item reveal-up" style="transition-delay: 0.1s;">
-                <img src="{% static 'core/assets/earth situation card front.webp' %}" alt="Earth Element" loading="lazy" style="object-fit: contain; padding: 1rem;">
-                <div class="photo-caption">Earth Element Artwork</div>
-            </div>
+            {% if images %}
+                {% for img in images %}
+                <div class="photo-item reveal-up" style="transition-delay: {{ forloop.counter0|add:1|default:1 }}00ms;">
+                    <img src="{{ img.image.url }}" alt="{{ img.title }}" loading="lazy" style="object-fit: contain; padding: 1rem;">
+                    <div class="photo-caption">{{ img.title }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Using existing assets as mockups for the gallery -->
+                <div class="photo-item reveal-up">
+                    <img src="{% static 'core/assets/game board.webp' %}" alt="Gameplay Setup" loading="lazy" style="object-fit: contain; padding: 2rem;">
+                    <div class="photo-caption">Full Board Setup</div>
+                </div>
+                
+                <div class="photo-item reveal-up" style="transition-delay: 0.1s;">
+                    <img src="{% static 'core/assets/identity card back.webp' %}" alt="Card Details" loading="lazy" style="object-fit: contain; padding: 1rem;">
+                    <div class="photo-caption">Identity Card Details</div>
+                </div>
+                
+                <div class="photo-item reveal-up" style="transition-delay: 0.2s;">
+                    <img src="{% static 'core/assets/fire situation card front.webp' %}" alt="Promotional Artwork" loading="lazy" style="object-fit: contain; padding: 1rem;">
+                    <div class="photo-caption">Fire Element Artwork</div>
+                </div>
+                
+                <div class="photo-item reveal-up">
+                    <img src="{% static 'core/assets/water situation card front.webp' %}" alt="Water Element" loading="lazy" style="object-fit: contain; padding: 1rem;">
+                    <div class="photo-caption">Water Element Artwork</div>
+                </div>
+                
+                <div class="photo-item reveal-up" style="transition-delay: 0.1s;">
+                    <img src="{% static 'core/assets/earth situation card front.webp' %}" alt="Earth Element" loading="lazy" style="object-fit: contain; padding: 1rem;">
+                    <div class="photo-caption">Earth Element Artwork</div>
+                </div>
 
-            <div class="photo-item reveal-up" style="transition-delay: 0.2s;">
-                <img src="{% static 'core/assets/air stiuation card front.webp' %}" alt="Air Element" loading="lazy" style="object-fit: contain; padding: 1rem;">
-                <div class="photo-caption">Air Element Artwork</div>
-            </div>
+                <div class="photo-item reveal-up" style="transition-delay: 0.2s;">
+                    <img src="{% static 'core/assets/air stiuation card front.webp' %}" alt="Air Element" loading="lazy" style="object-fit: contain; padding: 1rem;">
+                    <div class="photo-caption">Air Element Artwork</div>
+                </div>
+            {% endif %}
         </div>
         
         <div class="text-center mt-12 reveal-up">

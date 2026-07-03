@@ -11,15 +11,14 @@
         <div class="hero-rune-ring" aria-hidden="true"></div>
 
         <div class="hero-content">
-            <p class="hero-eyebrow" id="hero-eyebrow">A Physical Board Game by Amna Noor</p>
-            <h1 class="hero-title gradient-text" id="hero-title">RHIZOMATA</h1>
+            <p class="hero-eyebrow" id="hero-eyebrow">{{ site.hero_eyebrow }}</p>
+            <h1 class="hero-title gradient-text" id="hero-title">{{ site.hero_title }}</h1>
             <p class="hero-subtitle" id="hero-subtitle">
-                Where every root holds a story.<br />
-                Where every branch reveals a fate.
+                {{ site.hero_subtitle|linebreaksbr }}
             </p>
             <div class="hero-buttons" id="hero-buttons">
                 <a href="#concept" class="btn-ghost" id="btn-explore">Explore the Game</a>
-                <a href="#final-cta" class="btn-primary" id="btn-order-hero">Order Now</a>
+                <a href="{% url 'order' %}" class="btn-primary" id="btn-order-hero">Order Now</a>
             </div>
         </div>
 
@@ -123,7 +122,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="stats-grid">
                 <div class="reveal-up text-center">
-                    <div class="stat-number" data-count="72" id="stat-cards">72</div>
+                    <div class="stat-number" data-count="102" id="stat-cards">102</div>
                     <p class="stat-label">Unique Cards</p>
                 </div>
                 <div class="reveal-up text-center">
@@ -131,13 +130,13 @@
                     <p class="stat-label">Elemental Realms</p>
                 </div>
                 <div class="reveal-up text-center">
-                    <div class="stat-number" data-count="6" id="stat-players">6</div>
+                    <div class="stat-number" data-count="4" id="stat-players">4</div>
                     <p class="stat-label">Max Players</p>
                 </div>
                 <div class="reveal-up text-center">
                     <div class="stat-number" id="stat-time">
-                        <span data-count="90" id="stat-time-num">90</span><span
-                            style="font-size:0.55em;opacity:0.7;">+</span>
+                        <span data-count="60" id="stat-time-num">60</span><span
+                            style="font-size:0.55em;opacity:0.7;">-90</span>
                     </div>
                     <p class="stat-label">Minutes of Play</p>
                 </div>
@@ -158,7 +157,9 @@
                 <h2 class="section-heading reveal-up" id="identity-heading" style="max-width:600px;margin:0 auto;">
                     Identity <span class="gradient-text">Cards</span>
                 </h2>
-                <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif;">Click a card to reveal its true identity.</p>
+                <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
+                    In classical philosophy, your element is assigned at birth — fixed, inherited, and beyond your control. Rhizomata challenges this. The element is dealt randomly at the start of the game, but what you do with it is entirely a matter of choice. It is a starting condition, not a sentence.<br><br><span style="color: var(--accent); font-style: italic;">Click a card to reveal its true identity.</span>
+                </p>
             </div>
 
             <div class="identity-cards-grid reveal-up">
@@ -226,7 +227,9 @@
                 <h2 class="section-heading reveal-up" id="situation-heading" style="max-width:600px;margin:0 auto;">
                     Situation <span class="gradient-text">Cards</span>
                 </h2>
-                <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">60 unique moral decisions. Both options display their full consequences before you decide.<br>Click to face your fate.</p>
+                <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
+                    The tension between who we want to be and who we actually become in moments of pressure is the core of the game. You will face 60 unique moral decisions. Both options display their full consequences before you decide. No dice. No luck. <br><br><span style="color: var(--accent); font-style: italic;">Click to face your fate.</span>
+                </p>
             </div>
 
             <div class="identity-cards-grid reveal-up">
@@ -293,7 +296,9 @@
                 <h2 class="section-heading reveal-up" id="context-heading" style="max-width:600px;margin:0 auto;">
                     Context <span class="gradient-text">Cards</span>
                 </h2>
-                <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">42 unique context modifiers that alter the stakes of your situation.<br>A single scenario shifts depending on the context.</p>
+                <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
+                    A moral decision never exists in a vacuum. The game features 42 unique Context Cards that interlock with the 60 Situation Cards, producing <strong>2,520 unique pairings</strong>. A single scenario drastically shifts depending on the context drawn.
+                </p>
             </div>
 
             <div class="reveal-up" style="display: flex; justify-content: center;">
@@ -377,8 +382,8 @@
                     beginning.
                 </p>
                 <div class="flex gap-4 justify-center flex-wrap">
-                    <a href="#" class="btn-primary" id="cta-preorder-btn">Pre-Order Now</a>
-                    <a href="#features" class="btn-ghost" id="cta-learn-btn">Learn More</a>
+                    <a href="{% url 'order' %}" class="btn-primary" id="cta-preorder-btn">Pre-Order Now</a>
+                    <a href="{% url 'about' %}" class="btn-ghost" id="cta-learn-btn">Learn More</a>
                 </div>
             </div>
         </div>

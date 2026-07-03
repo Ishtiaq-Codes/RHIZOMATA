@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="terms-of-service" style="padding: 10rem 1.5rem 8rem; background: var(--bg-main); min-height: 100vh;">
+    <div class="max-w-4xl mx-auto">
+        <span class="section-label reveal-up">Legal</span>
+        <h1 class="section-heading reveal-up mb-12">Terms of Service</h1>
+        
+        <div class="prose prose-invert max-w-none font-['Inter'] text-gray-300 leading-relaxed reveal-up">
+            <p class="mb-6">
+                <strong>Last Updated:</strong> July 2026
+            </p>
+            
+            <p class="mb-6">
+                Welcome to Rhizomata. By accessing our website or purchasing our products, you agree to be bound by these Terms of Service. Please read them carefully.
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">1. General Conditions</h3>
+            <p class="mb-4">
+                We reserve the right to refuse service to anyone for any reason at any time. You understand that your content (not including credit card information) may be transferred unencrypted and involve transmissions over various networks. Credit card information is always encrypted during transfer over networks.
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">2. Products and Pre-Orders</h3>
+            <p class="mb-4">
+                Rhizomata is currently in a pre-order phase. By placing a pre-order, you acknowledge that:
+            </p>
+            <ul class="list-disc pl-6 mb-8 space-y-2">
+                <li>Delivery timelines are estimates and subject to change based on manufacturing and shipping variables.</li>
+                <li>Final product artwork or components may vary slightly from the prototypes shown on the website.</li>
+                <li>Your payment method will be charged at the time of placing the pre-order to secure your copy.</li>
+            </ul>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">3. Accuracy of Information</h3>
+            <p class="mb-8">
+                We are not responsible if information made available on this site is not accurate, complete, or current. The material on this site is provided for general information only and should not be relied upon or used as the sole basis for making decisions without consulting primary, more accurate, more complete, or more timely sources of information.
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">4. Intellectual Property</h3>
+            <p class="mb-8">
+                All content included on this site, such as text, graphics, logos, images, game rules, and artwork, is the property of Amna Noor and is protected by international copyright laws. You may not reproduce, distribute, or create derivative works without express written permission.
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">5. Contact Information</h3>
+            <p class="mb-8">
+                Questions about the Terms of Service should be sent to us at: <a href="mailto:{{ site.contact_email }}" class="text-teal-400 hover:underline">{{ site.contact_email }}</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="privacy-policy" style="padding: 10rem 1.5rem 8rem; background: var(--bg-main); min-height: 100vh;">
+    <div class="max-w-4xl mx-auto">
+        <span class="section-label reveal-up">Legal</span>
+        <h1 class="section-heading reveal-up mb-12">Privacy Policy</h1>
+        
+        <div class="prose prose-invert max-w-none font-['Inter'] text-gray-300 leading-relaxed reveal-up">
+            <p class="mb-6">
+                <strong>Last Updated:</strong> July 2026
+            </p>
+            
+            <p class="mb-6">
+                At Rhizomata, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or purchase our game.
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">1. Information We Collect</h3>
+            <p class="mb-4">
+                We only collect the information necessary to fulfill your pre-orders and communicate with you about Rhizomata:
+            </p>
+            <ul class="list-disc pl-6 mb-8 space-y-2">
+                <li><strong>Contact Information:</strong> Name and email address when you subscribe to updates or contact us.</li>
+                <li><strong>Order Information:</strong> Shipping address and billing details when you place a pre-order.</li>
+                <li><strong>Usage Data:</strong> Basic analytics (such as pages visited) to help us improve the website experience.</li>
+            </ul>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">2. How We Use Your Information</h3>
+            <p class="mb-4">
+                Your data is used exclusively for:
+            </p>
+            <ul class="list-disc pl-6 mb-8 space-y-2">
+                <li>Processing and delivering your orders.</li>
+                <li>Sending crucial updates regarding manufacturing and shipping timelines.</li>
+                <li>Responding to your customer service inquiries.</li>
+            </ul>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">3. Data Security</h3>
+            <p class="mb-8">
+                We implement strict security measures to maintain the safety of your personal information. All payment processing is handled through secure, encrypted, third-party payment gateways (SSL enabled). We do not store your credit card information on our servers.
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">4. Sharing Your Information</h3>
+            <p class="mb-8">
+                We will never sell, trade, or rent your personal identification information to others. We only share data with trusted third parties strictly necessary for fulfillment (e.g., shipping carriers).
+            </p>
+
+            <h3 class="text-2xl font-['Cinzel'] text-white mt-12 mb-4">5. Contact Us</h3>
+            <p class="mb-8">
+                If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:{{ site.contact_email }}" class="text-teal-400 hover:underline">{{ site.contact_email }}</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

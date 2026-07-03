@@ -20,7 +20,7 @@
                     Secure your copy of the mystical, philosophical strategy game. The Core Set includes the interconnected game board, 4 elemental Identity cards, 40 Situation cards, beautifully crafted pawns, and the comprehensive Rulebook.
                 </p>
 
-                <div class="text-4xl font-['Cinzel'] text-white mb-8">$79.00 <span class="text-lg text-gray-500 font-['Inter']">USD</span></div>
+                <div class="text-4xl font-['Cinzel'] text-white mb-8">${{ site.core_set_price }} <span class="text-lg text-gray-500 font-['Inter']">USD</span></div>
 
                 <!-- Order Form -->
                 <form class="space-y-6">
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="pt-4">
-                        <button type="button" class="w-full btn-primary py-4 text-lg justify-center flex items-center">
+                        <button type="button" id="checkout-btn" class="w-full btn-primary py-4 text-lg justify-center flex items-center">
                             Secure Checkout (SSL Enabled)
                         </button>
                     </div>
@@ -52,4 +52,40 @@
         </div>
     </div>
 </section>
+
+<!-- Beautiful Toast Notification -->
+<div id="coming-soon-toast" style="position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-dark); border: 1px solid var(--accent); color: white; padding: 1rem 2rem; border-radius: 50px; font-family: 'Inter', sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 10000; opacity: 0; pointer-events: none; white-space: nowrap;">
+    ◈ Payment gateway integration coming soon!
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('checkout-btn');
+    const toast = document.getElementById('coming-soon-toast');
+    let toastTimeout;
+
+    if (btn && toast) {
+        btn.addEventListener('click', () => {
+            // GSAP animation for the toast
+            gsap.to(toast, {
+                bottom: '40px',
+                opacity: 1,
+                duration: 0.5,
+                ease: 'back.out(1.7)'
+            });
+
+            // Hide after 3 seconds
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                gsap.to(toast, {
+                    bottom: '-100px',
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: 'power3.in'
+                });
+            }, 3000);
+        });
+    }
+});
+</script>
 {% endblock %}
