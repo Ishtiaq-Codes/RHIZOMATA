@@ -91,52 +91,27 @@
         </div>
 
         <div class="gallery-grid">
-            <!-- Board -->
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/game board.webp' %}')">
-                <img src="{% static 'core/assets/game board.webp' %}" class="gallery-img" loading="lazy" alt="Game Board">
-                <div class="gallery-caption">The Main Game Board</div>
+            {% for preview in preview_images %}
+            <div class="gallery-item reveal-up" onclick="openModal('{% if preview.image %}{{ preview.image.url }}{% endif %}')">
+                {% if preview.image %}
+                <img src="{{ preview.image.url }}" class="gallery-img" loading="lazy" alt="{{ preview.title }}">
+                {% endif %}
+                <div class="gallery-caption">{{ preview.title }}</div>
             </div>
+            {% endfor %}
 
-            <!-- Identity Cards -->
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (fire).webp' %}')">
-                <img src="{% static 'core/assets/identity card front (fire).webp' %}" class="gallery-img" loading="lazy" alt="Fire Identity Card">
-                <div class="gallery-caption">Identity Card (Fire)</div>
+            {% for pawn in pawns %}
+            <div class="gallery-item reveal-up" onclick="openModal('{% if pawn.image %}{{ pawn.image.url }}{% endif %}')">
+                {% if pawn.image %}
+                <img src="{{ pawn.image.url }}" class="gallery-img" loading="lazy" alt="{{ pawn.name }} Pawn">
+                {% endif %}
+                <div class="gallery-caption">{{ pawn.name }} Pawn</div>
             </div>
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (water).webp' %}')">
-                <img src="{% static 'core/assets/identity card front (water).webp' %}" class="gallery-img" loading="lazy" alt="Water Identity Card">
-                <div class="gallery-caption">Identity Card (Water)</div>
-            </div>
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (earth).webp' %}')">
-                <img src="{% static 'core/assets/identity card front (earth).webp' %}" class="gallery-img" loading="lazy" alt="Earth Identity Card">
-                <div class="gallery-caption">Identity Card (Earth)</div>
-            </div>
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card front (air).webp' %}')">
-                <img src="{% static 'core/assets/identity card front (air).webp' %}" class="gallery-img" loading="lazy" alt="Air Identity Card">
-                <div class="gallery-caption">Identity Card (Air)</div>
-            </div>
+            {% endfor %}
 
-            <!-- Situation Cards -->
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/fire situation card front.webp' %}')">
-                <img src="{% static 'core/assets/fire situation card front.webp' %}" class="gallery-img" loading="lazy" alt="Fire Situation Card">
-                <div class="gallery-caption">Situation Card (Fire)</div>
-            </div>
-            
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/water situation card front.webp' %}')">
-                <img src="{% static 'core/assets/water situation card front.webp' %}" class="gallery-img" loading="lazy" alt="Water Situation Card">
-                <div class="gallery-caption">Situation Card (Water)</div>
-            </div>
-
-            <!-- Context Card -->
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/context card front.webp' %}')">
-                <img src="{% static 'core/assets/context card front.webp' %}" class="gallery-img" loading="lazy" alt="Context Card">
-                <div class="gallery-caption">Context Card</div>
-            </div>
-
-            <!-- Backs -->
-            <div class="gallery-item reveal-up" onclick="openModal('{% static 'core/assets/identity card back.webp' %}')">
-                <img src="{% static 'core/assets/identity card back.webp' %}" class="gallery-img" loading="lazy" alt="Card Back">
-                <div class="gallery-caption">Identity Card Back</div>
-            </div>
+            {% if not preview_images and not pawns %}
+            <p style="color: var(--text-muted); text-align: center; width: 100%; grid-column: 1 / -1;">No preview components uploaded yet.</p>
+            {% endif %}
         </div>
     </div>
 </section>

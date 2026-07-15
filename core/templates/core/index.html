@@ -92,22 +92,21 @@
 
                 <!-- Text -->
                 <div style="max-width: 600px;">
-                    <span class="section-label reveal-up">The Philosophy</span>
+                    <span class="section-label reveal-up">{{ site.concept_label }}</span>
                     <h2 class="section-heading reveal-up" id="concept-heading">
-                        Destiny is not given.<br />
-                        <span class="gradient-text">It is chosen.</span>
+                        {{ site.concept_title|safe }}
                     </h2>
                     <div class="concept-divider reveal-up" aria-hidden="true"></div>
 
                     <p class="concept-text reveal-up" style="font-size: 1.1rem; line-height: 1.8;">
-                        Most games use chance — dice, card draws, random events — as the primary engine of excitement. <strong>Rhizomata</strong> proposes a different approach: <strong>all consequences are visible before every choice is made.</strong>
+                        {{ site.concept_text_1|safe }}
                     </p>
                     <br />
                     <p class="concept-text reveal-up" style="font-size: 1.1rem; line-height: 1.8;">
-                        There are no hidden reveals, no dice, no luck in the result of any decision. The tension is not informational. It is moral. Every person is a hostage to what they have earned.
+                        {{ site.concept_text_2|safe }}
                     </p>
 
-                    <p class="concept-author reveal-up" style="margin-top:2.5rem; color: var(--color-orange);">— Created by Amna Noor</p>
+                    <p class="concept-author reveal-up" style="margin-top:2.5rem; color: var(--color-orange);">{{ site.concept_author }}</p>
                 </div>
 
                 <!-- The right side is intentionally left empty so the animated node diagram (SVG) can take center stage as the background aesthetic. -->
@@ -122,23 +121,22 @@
         <div class="max-w-7xl mx-auto">
             <div class="stats-grid">
                 <div class="reveal-up text-center">
-                    <div class="stat-number" data-count="102" id="stat-cards">102</div>
-                    <p class="stat-label">Unique Cards</p>
+                    <div class="stat-number" data-count="{{ site.stat_1_number|default:'102' }}" id="stat-cards">{{ site.stat_1_number|default:'102' }}</div>
+                    <p class="stat-label">{{ site.stat_1_label }}</p>
                 </div>
                 <div class="reveal-up text-center">
-                    <div class="stat-number" data-count="4" id="stat-realms">4</div>
-                    <p class="stat-label">Elemental Realms</p>
+                    <div class="stat-number" data-count="{{ site.stat_2_number|default:'4' }}" id="stat-realms">{{ site.stat_2_number|default:'4' }}</div>
+                    <p class="stat-label">{{ site.stat_2_label }}</p>
                 </div>
                 <div class="reveal-up text-center">
-                    <div class="stat-number" data-count="4" id="stat-players">4</div>
-                    <p class="stat-label">Max Players</p>
+                    <div class="stat-number" data-count="{{ site.stat_3_number|default:'4' }}" id="stat-players">{{ site.stat_3_number|default:'4' }}</div>
+                    <p class="stat-label">{{ site.stat_3_label }}</p>
                 </div>
                 <div class="reveal-up text-center">
                     <div class="stat-number" id="stat-time">
-                        <span data-count="60" id="stat-time-num">60</span><span
-                            style="font-size:0.55em;opacity:0.7;">-90</span>
+                        {{ site.stat_4_number|safe }}
                     </div>
-                    <p class="stat-label">Minutes of Play</p>
+                    <p class="stat-label">{{ site.stat_4_label }}</p>
                 </div>
             </div>
         </div>
@@ -153,67 +151,36 @@
     <section id="identity-cards" aria-labelledby="identity-heading" style="background: var(--bg-dark); padding: 4rem 0 8rem 0; position: relative; z-index: 20;">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
-                <span class="section-label reveal-up">The Elements</span>
+                <span class="section-label reveal-up">{{ site.identity_label }}</span>
                 <h2 class="section-heading reveal-up" id="identity-heading" style="max-width:600px;margin:0 auto;">
-                    Identity <span class="gradient-text">Cards</span>
+                    {{ site.identity_title|safe }}
                 </h2>
                 <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
-                    In classical philosophy, your element is assigned at birth — fixed, inherited, and beyond your control. Rhizomata challenges this. The element is dealt randomly at the start of the game, but what you do with it is entirely a matter of choice. It is a starting condition, not a sentence.<br><br><span style="color: var(--accent); font-style: italic;">Click a card to reveal its true identity.</span>
+                    {{ site.identity_text|safe }}
                 </p>
             </div>
 
             <div class="carousel-wrapper">
                 <button class="carousel-btn prev" onclick="scrollCarousel('identity-carousel', -1)" aria-label="Previous card">&#10094;</button>
                 <div class="identity-cards-grid reveal-up" id="identity-carousel">
-                    
-                    <!-- Air Card -->
+                    {% for card in identity_cards %}
                     <div class="flip-container">
                         <div class="flipper">
                             <div class="back">
-                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
+                                {% if card.back_image %}
+                                <img src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
+                                {% endif %}
                             </div>
                             <div class="front">
-                                <img src="{% static 'core/assets/identity card front (air).webp' %}" class="card-image" loading="lazy" alt="Identity Card Air" />
+                                {% if card.front_image %}
+                                <img src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-
-                    <!-- Earth Card -->
-                    <div class="flip-container" style="transition-delay: 0.1s;">
-                        <div class="flipper">
-                            <div class="back">
-                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                            </div>
-                            <div class="front">
-                                <img src="{% static 'core/assets/identity card front (earth).webp' %}" class="card-image" loading="lazy" alt="Identity Card Earth" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fire Card -->
-                    <div class="flip-container" style="transition-delay: 0.2s;">
-                        <div class="flipper">
-                            <div class="back">
-                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                            </div>
-                            <div class="front">
-                                <img src="{% static 'core/assets/identity card front (fire).webp' %}" class="card-image" loading="lazy" alt="Identity Card Fire" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Water Card -->
-                    <div class="flip-container" style="transition-delay: 0.3s;">
-                        <div class="flipper">
-                            <div class="back">
-                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                            </div>
-                            <div class="front">
-                                <img src="{% static 'core/assets/identity card front (water).webp' %}" class="card-image" loading="lazy" alt="Identity Card Water" />
-                            </div>
-                        </div>
-                    </div>
-
+                    {% empty %}
+                    <p style="color: var(--text-muted); text-align: center; width: 100%;">No Identity Cards uploaded yet.</p>
+                    {% endfor %}
                 </div>
                 <button class="carousel-btn next" onclick="scrollCarousel('identity-carousel', 1)" aria-label="Next card">&#10095;</button>
             </div>
@@ -226,68 +193,37 @@
   ============================================= -->
     <section id="situation-cards" aria-labelledby="situation-heading" style="background: var(--bg-dark); padding: 4rem 0 8rem 0; position: relative; z-index: 19;">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center" style="margin-bottom: 3.5rem;">
-                <span class="section-label reveal-up">The Dilemmas</span>
+            <div class="text-center mb-12">
+                <span class="section-label reveal-up">{{ site.situation_label }}</span>
                 <h2 class="section-heading reveal-up" id="situation-heading" style="max-width:600px;margin:0 auto;">
-                    Situation <span class="gradient-text">Cards</span>
+                    {{ site.situation_title|safe }}
                 </h2>
                 <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
-                    The tension between who we want to be and who we actually become in moments of pressure is the core of the game. You will face 60 unique moral decisions. Both options display their full consequences before you decide. No dice. No luck. <br><br><span style="color: var(--accent); font-style: italic;">Click to face your fate.</span>
+                    {{ site.situation_text|safe }}
                 </p>
             </div>
 
             <div class="carousel-wrapper">
                 <button class="carousel-btn prev" onclick="scrollCarousel('situation-carousel', -1)" aria-label="Previous card">&#10094;</button>
                 <div class="identity-cards-grid reveal-up" id="situation-carousel">
-                    
-                    <!-- Air -->
-                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.1s;">
+                    {% for card in situation_cards %}
+                    <div class="flip-container" style="aspect-ratio: 627/864;">
                         <div class="flipper">
                             <div class="back" >
-                                <img src="{% static 'core/assets/air situation card back.webp' %}" class="card-image"  loading="lazy" alt="Air Situation Card Back" />
+                                {% if card.back_image %}
+                                <img src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
+                                {% endif %}
                             </div>
                             <div class="front" >
-                                <img src="{% static 'core/assets/air stiuation card front.webp' %}" class="card-image"  loading="lazy" alt="Air Situation Card Front" />
+                                {% if card.front_image %}
+                                <img src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-
-                    <!-- Earth -->
-                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.2s;">
-                        <div class="flipper">
-                            <div class="back" >
-                                <img src="{% static 'core/assets/earth situation card back.webp' %}" class="card-image"  loading="lazy" alt="Earth Situation Card Back" />
-                            </div>
-                            <div class="front" >
-                                <img src="{% static 'core/assets/earth situation card front.webp' %}" class="card-image"  loading="lazy" alt="Earth Situation Card Front" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fire -->
-                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.3s;">
-                        <div class="flipper">
-                            <div class="back" >
-                                <img src="{% static 'core/assets/fire situation card back.webp' %}" class="card-image"  loading="lazy" alt="Fire Situation Card Back" />
-                            </div>
-                            <div class="front" >
-                                <img src="{% static 'core/assets/fire situation card front.webp' %}" class="card-image"  loading="lazy" alt="Fire Situation Card Front" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Water -->
-                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.4s;">
-                        <div class="flipper">
-                            <div class="back" >
-                                <img src="{% static 'core/assets/water situation card back.webp' %}" class="card-image"  loading="lazy" alt="Water Situation Card Back" />
-                            </div>
-                            <div class="front" >
-                                <img src="{% static 'core/assets/water situation card front.webp' %}" class="card-image"  loading="lazy" alt="Water Situation Card Front" />
-                            </div>
-                        </div>
-                    </div>
-
+                    {% empty %}
+                    <p style="color: var(--text-muted); text-align: center; width: 100%;">No Situation Cards uploaded yet.</p>
+                    {% endfor %}
                 </div>
                 <button class="carousel-btn next" onclick="scrollCarousel('situation-carousel', 1)" aria-label="Next card">&#10095;</button>
             </div>
@@ -299,27 +235,39 @@
   ============================================= -->
     <section id="context-card" aria-labelledby="context-heading" style="background: var(--bg-dark); padding: 4rem 0 8rem 0; position: relative; z-index: 18;">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center" style="margin-bottom: 3.5rem;">
-                <span class="section-label reveal-up">The Frame</span>
+            <div class="text-center mb-12">
+                <span class="section-label reveal-up">{{ site.context_label }}</span>
                 <h2 class="section-heading reveal-up" id="context-heading" style="max-width:600px;margin:0 auto;">
-                    Context <span class="gradient-text">Cards</span>
+                    {{ site.context_title|safe }}
                 </h2>
                 <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
-                    A moral decision never exists in a vacuum. The game features 42 unique Context Cards that interlock with the 60 Situation Cards, producing <strong>2,520 unique pairings</strong>. A single scenario drastically shifts depending on the context drawn.
+                    {{ site.context_text|safe }}
                 </p>
             </div>
 
-            <div class="reveal-up" style="display: flex; justify-content: center;">
-                <div class="flip-container" style="max-width: 360px; aspect-ratio: 573 / 615;">
-                    <div class="flipper">
-                        <div class="back">
-                            <img src="{% static 'core/assets/context card back.webp' %}" class="card-image" loading="lazy" alt="Context Card Back" />
-                        </div>
-                        <div class="front">
-                            <img src="{% static 'core/assets/context card front.webp' %}" class="card-image" loading="lazy" alt="Context Card Front" />
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel('context-carousel', -1)" aria-label="Previous card">&#10094;</button>
+                <div class="identity-cards-grid reveal-up" id="context-carousel" style="{% if context_cards|length == 1 %}display: flex; justify-content: center; gap: 2rem;{% endif %}">
+                    {% for card in context_cards %}
+                    <div class="flip-container" style="aspect-ratio: 627/864; {% if context_cards|length == 1 %}width: 100%; max-width: 320px;{% endif %}">
+                        <div class="flipper">
+                            <div class="back">
+                                {% if card.back_image %}
+                                <img src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
+                                {% endif %}
+                            </div>
+                            <div class="front">
+                                {% if card.front_image %}
+                                <img src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
+                    {% empty %}
+                    <p style="color: var(--text-muted); text-align: center; width: 100%;">No Context Cards uploaded yet.</p>
+                    {% endfor %}
                 </div>
+                <button class="carousel-btn next" onclick="scrollCarousel('context-carousel', 1)" aria-label="Next card">&#10095;</button>
             </div>
         </div>
     </section>
@@ -329,29 +277,30 @@
   ============================================= -->
     <section id="pawns-showcase" aria-labelledby="pawns-heading" style="background: var(--bg-dark); padding: 4rem 0 8rem 0; position: relative; z-index: 17;">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center" style="margin-bottom: 3.5rem;">
-                <span class="section-label reveal-up">The Vessels</span>
-                <h2 class="section-heading reveal-up" id="pawns-heading" style="max-width:600px;margin:0 auto;">
-                    The Dual <span class="gradient-text">Self</span>
+            <div class="text-center mb-16">
+                <span class="section-label reveal-up">{{ site.pawns_label }}</span>
+                <h2 class="section-heading reveal-up" id="pawns-heading">
+                    {{ site.pawns_title|safe }}
                 </h2>
                 <p class="reveal-up" style="color: var(--text-muted); margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1.1rem; max-width: 700px; margin-inline: auto; line-height: 1.8;">
-                    Each player controls two pawns simultaneously: a <strong>Stability Pawn</strong> — moving ahead for grounded, restrained choices — and an <strong>Ambition Pawn</strong> — moving ahead for bold, risky choices. The tension between who we want to be and who we actually become is the core of the game.
+                    {{ site.pawns_text|safe }}
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto reveal-up px-4">
-                <div class="text-center perspective-1000">
-                    <h3 class="text-2xl font-['Cinzel'] text-orange-400 mb-6 tracking-wide">Ambition</h3>
-                    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(209,104,52,0.15); border: 1px solid rgba(255,255,255,0.05); aspect-ratio: 1/1;" class="bg-black/40 p-4 transition-transform duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(209,104,52,0.25)]">
-                        <img src="{% static 'core/assets/ambition_pawn.webp' %}" class="w-full h-full object-contain" loading="lazy" alt="Ambition Pawn" style="transform: scale(0.9);" />
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12" style="max-width: 900px; margin: 0 auto; padding: 0 1rem;">
+                {% for pawn in pawns %}
+                <div class="concept-card text-center reveal-scale">
+                    
+                    <div class="concept-card-img-wrap mx-auto mb-6 flex justify-center items-center relative" style="width: 100%; height: 400px;">
+                        {% if pawn.image %}
+                        <img src="{{ pawn.image.url }}" alt="{{ pawn.name }} Pawn" class="w-full h-full object-contain relative z-10" loading="lazy">
+                        {% endif %}
                     </div>
+                    <h3 class="text-3xl font-['Cinzel'] mb-3 {{ pawn.title_color_class }}" style="font-weight: 700; letter-spacing: 0.05em;">{{ pawn.name }}</h3>
                 </div>
-                <div class="text-center perspective-1000">
-                    <h3 class="text-2xl font-['Cinzel'] text-blue-400 mb-6 tracking-wide">Stability</h3>
-                    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(59,130,246,0.15); border: 1px solid rgba(255,255,255,0.05); aspect-ratio: 1/1;" class="bg-black/40 p-4 transition-transform duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(59,130,246,0.25)]">
-                        <img src="{% static 'core/assets/stability_pawn.webp' %}" class="w-full h-full object-contain" loading="lazy" alt="Stability Pawn" style="transform: scale(0.9);" />
-                    </div>
-                </div>
+                {% empty %}
+                <p style="color: var(--text-muted); text-align: center; width: 100%;">No Pawns uploaded yet.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -363,20 +312,22 @@
         <div class="board-glow-bg" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center mb-16">
-                <span class="section-label reveal-up">The Arena</span>
+                <span class="section-label reveal-up">{{ site.board_label }}</span>
                 <h2 class="section-heading reveal-up" id="board-heading" style="max-width:580px;margin:0 auto;">
-                    The Arena.<br /><span class="gradient-text">Your Path to Becoming.</span>
+                    {{ site.board_title|safe }}
                 </h2>
                 <p class="reveal-up"
                     style="font-family:'Inter',sans-serif;font-size:1.05rem;color:var(--text-muted);max-width:700px;margin:1.5rem auto 0;line-height:1.85;">
-                    Every player controls two pawns simultaneously: a <strong>Stability Pawn</strong> moving ahead for grounded, restrained choices — and an <strong>Ambition Pawn</strong> moving ahead for bold, risky choices. What happens on the board reflects the character you are becoming.
+                    {{ site.board_text|safe }}
                 </p>
             </div>
 
             <!-- Board Image -->
             <div class="flex justify-center reveal-scale">
                 <div style="max-width: 900px; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-                    <img src="{% static 'core/assets/game board.webp' %}" alt="Rhizomata Game Board" style="width: 100%; height: auto; display: block;" loading="lazy" />
+                    {% if site.board_image %}
+                    <img src="{{ site.board_image.url }}" alt="Rhizomata Game Board" style="width: 100%; height: auto; display: block;" loading="lazy" />
+                    {% endif %}
                 </div>
             </div>
 

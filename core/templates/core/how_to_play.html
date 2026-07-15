@@ -7,8 +7,8 @@
     <div class="concept-bg-accent" style="background:var(--color-teal);bottom:10%;right:-100px;opacity:0.04;" aria-hidden="true"></div>
 
     <div class="max-w-7xl mx-auto relative z-10 text-center">
-        <span class="section-label reveal-up">Rules of the Realm</span>
-        <h1 class="section-heading reveal-up mb-12">How to Play</h1>
+        <span class="section-label reveal-up">{{ site.how_to_play_label }}</span>
+        <h1 class="section-heading reveal-up mb-12">{{ site.how_to_play_title }}</h1>
         <style>
             @keyframes float-book {
                 0% { transform: translateY(0px) rotateX(2deg) rotateY(-2deg); }
@@ -30,7 +30,9 @@
 
         <div class="mb-20 reveal-scale flex justify-center perspective-1000">
             <div class="rulebook-artifact">
-                <img src="{% static 'core/assets/rulebook.webp' %}" alt="Rhizomata Rulebook" style="width: 100%; height: auto; display: block;" loading="lazy" />
+                {% if site.rulebook_image %}
+                <img src="{{ site.rulebook_image.url }}" alt="Rhizomata Rulebook" style="width: 100%; height: auto; display: block;" loading="lazy" />
+                {% endif %}
             </div>
         </div>
         
@@ -38,30 +40,30 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left mt-16">
             <div class="p-8 border border-white/5 bg-white/5 rounded-xl backdrop-blur-sm reveal-up">
-                <h3 class="text-2xl font-['Cinzel'] text-orange-400 mb-4">1. The Dual-Self</h3>
-                <p class="text-gray-400 leading-relaxed font-['Inter']">You control two pawns simultaneously. The <strong>Stability Pawn</strong> moves ahead for grounded, restrained choices. The <strong>Ambition Pawn</strong> moves ahead for bold, risky decisions.</p>
+                <h3 class="text-2xl font-['Cinzel'] text-orange-400 mb-4">{{ site.rule_1_title }}</h3>
+                <p class="text-gray-400 leading-relaxed font-['Inter']">{{ site.rule_1_text|safe }}</p>
             </div>
             
             <div class="p-8 border border-white/5 bg-white/5 rounded-xl backdrop-blur-sm reveal-up" style="transition-delay: 0.1s;">
-                <h3 class="text-2xl font-['Cinzel'] text-purple-400 mb-4">2. Visible Consequences</h3>
-                <p class="text-gray-400 leading-relaxed font-['Inter']">There are no dice. Every Situation Card and Context Card shows the <em>exact consequences</em> of both options before you choose. The tension is not informational—it is moral.</p>
+                <h3 class="text-2xl font-['Cinzel'] text-purple-400 mb-4">{{ site.rule_2_title }}</h3>
+                <p class="text-gray-400 leading-relaxed font-['Inter']">{{ site.rule_2_text|safe }}</p>
             </div>
             
             <div class="p-8 border border-white/5 bg-white/5 rounded-xl backdrop-blur-sm reveal-up" style="transition-delay: 0.2s;">
-                <h3 class="text-2xl font-['Cinzel'] text-teal-400 mb-4">3. The Token Economy</h3>
-                <p class="text-gray-400 leading-relaxed font-['Inter']">Your choices reward you with Balance or Pressure tokens. These tokens are a permanent record of the kind of actions you took. Choose wisely; they cannot be undone.</p>
+                <h3 class="text-2xl font-['Cinzel'] text-teal-400 mb-4">{{ site.rule_3_title }}</h3>
+                <p class="text-gray-400 leading-relaxed font-['Inter']">{{ site.rule_3_text|safe }}</p>
             </div>
         </div>
 
 
 
         <div class="mt-20 p-10 border border-white/10 bg-black/40 rounded-2xl max-w-4xl mx-auto reveal-up">
-            <h3 class="text-3xl font-['Cinzel'] text-white mb-6 text-center">No Winners, No Losers</h3>
+            <h3 class="text-3xl font-['Cinzel'] text-white mb-6 text-center">{{ site.conclusion_title }}</h3>
             <p class="text-gray-300 leading-relaxed font-['Inter'] text-lg text-center mb-6">
-                Rhizomata does not end with a score. After tallying your tokens and pawn positions across the two-axis matrix, the game ends with the <strong>Archetype Reveal</strong>.
+                {{ site.conclusion_text|safe }}
             </p>
             <p class="text-gray-400 leading-relaxed font-['Inter'] text-md text-center">
-                You leave the table with a character, not a number: <em>The Sage, The Guardian, The Wanderer, The Rebel,</em> or <em>The Opportunist</em>. The game does not judge you; it simply reflects the record of your own choices.
+                {{ site.sub_conclusion_text|safe }}
             </p>
         </div>
     </div>

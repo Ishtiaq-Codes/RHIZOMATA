@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Static files (collected)
+staticfiles/
+
+# IMPORTANT: We are NOT ignoring db.sqlite3 and media/ 
+# because the user explicitly wants them pushed to production via GitHub.
