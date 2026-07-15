@@ -11,5 +11,10 @@ ENV/
 # Static files (collected)
 staticfiles/
 
-# IMPORTANT: We are NOT ignoring db.sqlite3 and media/ 
-# because the user explicitly wants them pushed to production via GitHub.
+# Database and Media (NEVER COMMIT TO PUBLIC REPO)
+db.sqlite3
+media/
+
+# Environment Variables
+.env
+.env.*
