@@ -70,16 +70,3 @@ RHIZOMATA/
 ├── staticfiles/                # Compiled static files for production
 ├── requirements.txt            # Python dependencies
 └── db.sqlite3                  # Production Database
-🔐 Developer Console (CMS)
-The backend CMS is heavily customized for managing the game's assets. For security purposes, the default Django /admin/ route has been hidden and replaced with a custom, unguessable path.
-
-To manage site content, log into the Developer Console, where you can modify:
-
-Site Settings: Update contact emails, Instagram links, LinkedIn profiles, and Rulebook PDFs.
-Game Cards: Upload new Identity, Situation, or Context cards with front and back .webp images.
-Game Pawns: Manage 3D rendered pawn assets (e.g., Ambition, Stability).
-Visuals: Update the Gallery and Component Preview carousels.
-🎨 Credits & Copyright
-Game Design & Concept: Amna Noor
-Web Development & Architecture: Ishtiaq-Codes
-Copyright: © 2026 Rhizomata. All Rights Reserved.
