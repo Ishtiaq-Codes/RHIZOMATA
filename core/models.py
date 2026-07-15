@@ -14,7 +14,7 @@ class SiteSettings(models.Model):
     about_intro = models.TextField(default="Rhizomata is a tabletop board game built around a single design question: what happens when a player can see the full consequence of every choice before making it?\n\nThe game draws on the elemental philosophy of Empedocles (circa 490-430 BCE), who proposed that all reality is composed of four fundamental roots — fire, water, air, and earth — governed by Love and Strife.\n\nThere are no dice. No hidden reveals. The tension is entirely moral. You define yourself through what you choose.")
     
     # Contact & Social
-    contact_email = models.EmailField(default="info@rhizomata.com")
+    contact_email = models.EmailField(default="info@rhizomata.net")
     instagram_url = models.URLField(blank=True, null=True, help_text="Link to your Instagram profile")
     
     # Order Info
