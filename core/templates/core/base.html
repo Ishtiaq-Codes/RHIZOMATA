@@ -336,11 +336,15 @@
             position: fixed;
             inset: 0;
             z-index: 999;
-            background: rgba(0, 0, 0, 0.97);
+            background: rgba(11, 19, 31, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
+            justify-content: flex-start;
+            gap: 2rem;
+            padding: 6rem 1rem 2rem 1rem;
+            overflow-y: auto;
         }
 
         #mobile-menu.open {
@@ -349,8 +353,8 @@
 
         .mobile-nav-link {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            letter-spacing: 0.18em;
+            font-size: 1.4rem;
+            letter-spacing: 0.15em;
             color: var(--text-primary);
             text-decoration: none;
             transition: color 0.3s ease;
@@ -367,6 +371,11 @@
 
             .desktop-nav {
                 display: none !important;
+            }
+            
+            .nav-logo-icon {
+                width: 140px;
+                height: 38px;
             }
         }
 
@@ -1469,7 +1478,7 @@
        NAVIGATION
   ============================================= -->
     <header id="main-nav" role="banner">
-        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="Main navigation">
+        <nav class="max-w-7xl mx-auto px-4 py-2 md:px-6 md:py-4 flex items-center justify-between" aria-label="Main navigation">
             <a href="{% url 'index' %}" class="nav-logo-wrap" aria-label="Rhizomata home">
                 <div class="nav-logo-icon" role="img" aria-label="Rhizomata logo"></div>
             </a>
