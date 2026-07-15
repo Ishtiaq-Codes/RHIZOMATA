@@ -1358,12 +1358,10 @@
         }
 
         .footer-logo-icon {
-            width: 85px;
-            height: 85px;
+            width: 200px;
+            height: 60px;
             flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            background: url('{% static "core/assets/logo_nobg.webp" %}') center/contain no-repeat;
+            background: url('{% static "core/assets/logo_nobg.webp" %}') left center/contain no-repeat;
             opacity: 0.9;
         }
         /* Initial hidden state for animations (prevents flash of content before JS loads) */
@@ -1519,8 +1517,7 @@
                 <!-- Brand & Philosophy -->
                 <div class="md:col-span-2">
                     <div class="flex items-center gap-3">
-                        <div class="footer-logo-icon" role="img" aria-label="Rhizomata logo"></div>
-                        <a href="{% url 'index' %}" class="nav-logo" style="font-size: 1.5rem;">RHIZOMATA</a>
+                        <a href="{% url 'index' %}" class="footer-logo-icon" role="img" aria-label="Rhizomata logo"></a>
                     </div>
                     <p class="mt-4 text-gray-400 font-['Inter'] leading-relaxed max-w-sm">
                         Destiny is not given. It is chosen.<br>
