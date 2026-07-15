@@ -3,7 +3,7 @@
 
 ![Rhizomata Banner](core/static/core/assets/game%20board.webp)
 
-Rhizomata is the official digital experience and promotional platform engineered and developed by Ishtiaq-Codes for the premium, mystical, and philosophical physical board game conceptualized by Amna Noor. This repository contains the complete architecture for the web experience, featuring a custom-built Content Management System (CMS), high-performance scrolling animations, and an immersive user interface.
+**Rhizomata** is the official digital experience and promotional platform engineered and developed by **Ishtiaq-Codes** for the premium, mystical, and philosophical physical board game conceptualized by **Amna Noor.** This repository contains the complete architecture for the web experience, featuring a custom-built Content Management System (CMS), high-performance scrolling animations, and an immersive user interface.
 
 ## 🌟 Features
 
