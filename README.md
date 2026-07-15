@@ -108,7 +108,7 @@ To manage site content, log into the Developer Console, where you can modify:
 
 ## 🎨 Credits & Copyright
 
-- **Game Design & Concept:** Amna Noor
-- **Web Development & Architecture:** Ishtiaq-Codes
+- **Development & Architecture:** Ishtiaq-Codes
+- **Game Concept:** Amna Noor
 - **Copyright:** © 2026 Rhizomata. All Rights Reserved.
 ```
