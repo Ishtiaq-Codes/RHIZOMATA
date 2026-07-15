@@ -4,6 +4,7 @@
 {% block title %}{{ title }} | Ishtiaq-Codes Developer Console{% endblock %}
 
 {% block extrahead %}
+    {{ block.super }}
     <link rel="icon" type="image/png" href="{% static 'core/assets/favicon.png' %}?v=3" />
     <link rel="apple-touch-icon" href="{% static 'core/assets/favicon.png' %}?v=3" />
 {% endblock %}
@@ -25,6 +26,7 @@
 {% endblock %}
 
 {% block extrastyle %}
+{{ block.super }}
 <style>
     /* Add a custom touch to the admin panel */
     #header {
