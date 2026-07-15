@@ -1091,12 +1091,10 @@
             text-decoration: none;
         }        /* Crop into just the icon portion of logo.png (removes empty dark space) */
         .nav-logo-icon {
-            width: 96px;
-            height: 96px;
+            width: 180px;
+            height: 48px;
             flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            background: url('{% static "core/assets/logo_nobg.webp" %}') center/contain no-repeat;
+            background: url('{% static "core/assets/logo_nobg.webp" %}') left center/contain no-repeat;
         }
 
         /* =============================================
@@ -1475,8 +1473,7 @@
     <header id="main-nav" role="banner">
         <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="Main navigation">
             <a href="{% url 'index' %}" class="nav-logo-wrap" aria-label="Rhizomata home">
-                <div class="nav-logo-icon" role="img" aria-label="Rhizomata hourglass symbol"></div>
-                <span class="nav-logo">RHIZOMATA</span>
+                <div class="nav-logo-icon" role="img" aria-label="Rhizomata logo"></div>
             </a>
 
             <div class="desktop-nav flex items-center gap-5">
