@@ -9,9 +9,27 @@
     <div class="max-w-7xl mx-auto relative z-10 text-center">
         <span class="section-label reveal-up">Rules of the Realm</span>
         <h1 class="section-heading reveal-up mb-12">How to Play</h1>
+        <style>
+            @keyframes float-book {
+                0% { transform: translateY(0px) rotateX(2deg) rotateY(-2deg); }
+                50% { transform: translateY(-15px) rotateX(4deg) rotateY(0deg); }
+                100% { transform: translateY(0px) rotateX(2deg) rotateY(-2deg); }
+            }
+            .rulebook-artifact {
+                max-width: 900px;
+                width: 100%;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(209, 104, 52, 0.1);
+                border: 1px solid rgba(255,255,255,0.1);
+                animation: float-book 6s ease-in-out infinite;
+                transform-style: preserve-3d;
+                perspective: 1000px;
+            }
+        </style>
 
-        <div class="mb-20 reveal-scale flex justify-center">
-            <div style="max-width: 900px; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05);">
+        <div class="mb-20 reveal-scale flex justify-center perspective-1000">
+            <div class="rulebook-artifact">
                 <img src="{% static 'core/assets/rulebook.webp' %}" alt="Rhizomata Rulebook" style="width: 100%; height: auto; display: block;" loading="lazy" />
             </div>
         </div>
