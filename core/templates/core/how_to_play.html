@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+﻿{% extends 'core/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -31,7 +31,7 @@
         <div class="mb-20 reveal-scale flex justify-center perspective-1000">
             <div class="rulebook-artifact">
                 {% if site.rulebook_image %}
-                <img src="{{ site.rulebook_image.url }}" alt="Rhizomata Rulebook" style="width: 100%; height: auto; display: block;" loading="lazy" />
+                <img decoding="async" src="{{ site.rulebook_image.url }}" alt="Rhizomata Rulebook" style="width: 100%; height: auto; display: block;" loading="lazy" />
                 {% endif %}
             </div>
         </div>
@@ -69,3 +69,4 @@
     </div>
 </section>
 {% endblock %}
+

@@ -168,12 +168,12 @@
                         <div class="flipper">
                             <div class="back">
                                 {% if card.back_image %}
-                                <img src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
+                                <img decoding="async" src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
                                 {% endif %}
                             </div>
                             <div class="front">
                                 {% if card.front_image %}
-                                <img src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
+                                <img decoding="async" src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
                                 {% endif %}
                             </div>
                         </div>
@@ -211,12 +211,12 @@
                         <div class="flipper">
                             <div class="back" >
                                 {% if card.back_image %}
-                                <img src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
+                                <img decoding="async" src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
                                 {% endif %}
                             </div>
                             <div class="front" >
                                 {% if card.front_image %}
-                                <img src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
+                                <img decoding="async" src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
                                 {% endif %}
                             </div>
                         </div>
@@ -253,12 +253,12 @@
                         <div class="flipper">
                             <div class="back">
                                 {% if card.back_image %}
-                                <img src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
+                                <img decoding="async" src="{{ card.back_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }} Back" />
                                 {% endif %}
                             </div>
                             <div class="front">
                                 {% if card.front_image %}
-                                <img src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
+                                <img decoding="async" src="{{ card.front_image.url }}" class="card-image" loading="lazy" alt="{{ card.name }}" />
                                 {% endif %}
                             </div>
                         </div>
@@ -293,7 +293,7 @@
                     
                     <div class="concept-card-img-wrap mx-auto mb-6 flex justify-center items-center relative" style="width: 100%; height: 400px;">
                         {% if pawn.image %}
-                        <img src="{{ pawn.image.url }}" alt="{{ pawn.name }} Pawn" class="w-full h-full object-contain relative z-10" loading="lazy">
+                        <img decoding="async" src="{{ pawn.image.url }}" alt="{{ pawn.name }} Pawn" class="w-full h-full object-contain relative z-10" loading="lazy">
                         {% endif %}
                     </div>
                     <h3 class="text-3xl font-['Cinzel'] mb-3 {{ pawn.title_color_class }}" style="font-weight: 700; letter-spacing: 0.05em;">{{ pawn.name }}</h3>
@@ -326,7 +326,7 @@
             <div class="flex justify-center reveal-scale">
                 <div style="max-width: 900px; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
                     {% if site.board_image %}
-                    <img src="{{ site.board_image.url }}" alt="Rhizomata Game Board" style="width: 100%; height: auto; display: block;" loading="lazy" />
+                    <img decoding="async" src="{{ site.board_image.url }}" alt="Rhizomata Game Board" style="width: 100%; height: auto; display: block;" loading="lazy" />
                     {% endif %}
                 </div>
             </div>
@@ -380,3 +380,4 @@
         </div>
     </section>
 {% endblock %}
+

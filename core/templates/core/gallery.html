@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+﻿{% extends 'core/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -54,7 +54,7 @@
         <div class="photo-grid">
             {% for img in images %}
             <div class="photo-item reveal-up" style="transition-delay: {{ forloop.counter0|add:1|default:1 }}00ms;">
-                <img src="{{ img.image.url }}" alt="{{ img.title }}" loading="lazy">
+                <img decoding="async" src="{{ img.image.url }}" alt="{{ img.title }}" loading="lazy">
                 <div class="photo-caption">{{ img.title }}</div>
             </div>
             {% empty %}
@@ -68,3 +68,4 @@
     </div>
 </section>
 {% endblock %}
+

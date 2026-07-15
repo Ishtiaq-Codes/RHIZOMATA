@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+﻿{% extends 'core/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -86,7 +86,7 @@
             <span class="section-label reveal-up">The Artifacts</span>
             <h1 class="section-heading reveal-up">Game Components</h1>
             <p class="text-gray-400 mt-4 max-w-2xl mx-auto font-['Inter'] reveal-up text-lg leading-relaxed">
-                Explore the premium components of Rhizomata. The game includes a 20×20 inch board, 4 Tarot-sized Identity Cards, 4 Stability Pawns, 4 Ambition Pawns, and a full 102-card deck system (60 Situation Cards, 42 Context Cards).
+                Explore the premium components of Rhizomata. The game includes a 20Ã—20 inch board, 4 Tarot-sized Identity Cards, 4 Stability Pawns, 4 Ambition Pawns, and a full 102-card deck system (60 Situation Cards, 42 Context Cards).
             </p>
         </div>
 
@@ -94,7 +94,7 @@
             {% for preview in preview_images %}
             <div class="gallery-item reveal-up" onclick="openModal('{% if preview.image %}{{ preview.image.url }}{% endif %}')">
                 {% if preview.image %}
-                <img src="{{ preview.image.url }}" class="gallery-img" loading="lazy" alt="{{ preview.title }}">
+                <img decoding="async" src="{{ preview.image.url }}" class="gallery-img" loading="lazy" alt="{{ preview.title }}">
                 {% endif %}
                 <div class="gallery-caption">{{ preview.title }}</div>
             </div>
@@ -103,7 +103,7 @@
             {% for pawn in pawns %}
             <div class="gallery-item reveal-up" onclick="openModal('{% if pawn.image %}{{ pawn.image.url }}{% endif %}')">
                 {% if pawn.image %}
-                <img src="{{ pawn.image.url }}" class="gallery-img" loading="lazy" alt="{{ pawn.name }} Pawn">
+                <img decoding="async" src="{{ pawn.image.url }}" class="gallery-img" loading="lazy" alt="{{ pawn.name }} Pawn">
                 {% endif %}
                 <div class="gallery-caption">{{ pawn.name }} Pawn</div>
             </div>
@@ -119,7 +119,7 @@
 <!-- Fullscreen Modal -->
 <div id="gallery-modal" onclick="closeModal()">
     <span class="modal-close">&times;</span>
-    <img id="modal-img" src="" alt="Enlarged view">
+    <img decoding="async" id="modal-img" src="" alt="Enlarged view">
 </div>
 
 <script>
@@ -136,3 +136,4 @@
     }
 </script>
 {% endblock %}
+

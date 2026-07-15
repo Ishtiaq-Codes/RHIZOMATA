@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+﻿{% extends 'core/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -8,7 +8,7 @@
             
             <!-- Product Image -->
             <div class="reveal-right">
-                <img src="{% static 'core/assets/game board.webp' %}" alt="Rhizomata Game Box and Board" class="w-full h-auto rounded-xl shadow-2xl" style="border: 1px solid rgba(255,255,255,0.05);">
+                <img decoding="async" src="{% static 'core/assets/game board.webp' %}" alt="Rhizomata Game Box and Board" class="w-full h-auto rounded-xl shadow-2xl" style="border: 1px solid rgba(255,255,255,0.05);">
             </div>
 
             <!-- Product Details -->
@@ -55,7 +55,7 @@
 
 <!-- Beautiful Toast Notification -->
 <div id="coming-soon-toast" style="position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-dark); border: 1px solid var(--accent); color: white; padding: 1rem 2rem; border-radius: 50px; font-family: 'Inter', sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 10000; opacity: 0; pointer-events: none; white-space: nowrap;">
-    ◈ Payment gateway integration coming soon!
+    â—ˆ Payment gateway integration coming soon!
 </div>
 
 <script>
@@ -89,3 +89,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 {% endblock %}
+

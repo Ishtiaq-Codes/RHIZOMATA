@@ -1,6 +1,12 @@
 {% extends "admin/base.html" %}
+{% load static %}
 
-{% block title %}{{ title }} | Ishtiaq-Codes CMS{% endblock %}
+{% block title %}{{ title }} | Ishtiaq-Codes Developer Console{% endblock %}
+
+{% block extrahead %}
+    <link rel="icon" type="image/png" href="{% static 'core/assets/favicon.png' %}?v=3" />
+    <link rel="apple-touch-icon" href="{% static 'core/assets/favicon.png' %}?v=3" />
+{% endblock %}
 
 {% block branding %}
 <h1 id="site-name" style="margin-bottom: 0;">
