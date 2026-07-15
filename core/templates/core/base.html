@@ -1421,6 +1421,77 @@
             border-radius: 14px;
         }
 
+        /* =============================================
+           MOBILE CAROUSEL (For Identity & Situation Cards)
+        ============================================= */
+        @media (max-width: 768px) {
+            .carousel-wrapper {
+                position: relative;
+                padding: 0 45px; /* space for buttons */
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            
+            .identity-cards-grid {
+                display: flex !important;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1.5rem;
+                scroll-behavior: smooth;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                padding: 1rem 0;
+            }
+            
+            .identity-cards-grid::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .identity-cards-grid > .flip-container {
+                flex: 0 0 100%;
+                scroll-snap-align: center;
+            }
+            
+            .carousel-btn {
+                display: flex;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: white;
+                border-radius: 50%;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 10;
+                backdrop-filter: blur(5px);
+                font-size: 1.2rem;
+                transition: background 0.3s ease;
+            }
+            
+            .carousel-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+            
+            .carousel-btn.prev {
+                left: 0px;
+            }
+            
+            .carousel-btn.next {
+                right: 0px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .carousel-btn {
+                display: none;
+            }
+        }
+
         .flip-container:hover .flipper {
             box-shadow: 0 15px 40px rgba(209, 104, 52, 0.2);
             transform: translateY(-5px);
@@ -1828,6 +1899,33 @@
                     this.classList.toggle('flipped');
                 });
             });
+
+            /* -------------------------------------------
+               6. CUSTOM CURSOR
+            ------------------------------------------- */
+            const cursor = document.getElementById('custom-cursor');
+            const cursorGlow = document.getElementById('cursor-glow');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                cursorGlow.style.transform = `translate(${e.clientX - 150}px, ${e.clientY - 150}px)`;
+            });
+
+            document.querySelectorAll('a, button, .flip-container, .concept-card-img-wrap, .feature-card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+
+            /* -------------------------------------------
+               7. MOBILE CAROUSEL
+            ------------------------------------------- */
+            window.scrollCarousel = function(id, direction) {
+                const container = document.getElementById(id);
+                if (!container) return;
+                
+                const scrollAmount = container.clientWidth;
+                container.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+            };
 
         }());
     </script>

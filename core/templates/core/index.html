@@ -162,56 +162,60 @@
                 </p>
             </div>
 
-            <div class="identity-cards-grid reveal-up">
-                
-                <!-- Air Card -->
-                <div class="flip-container">
-                    <div class="flipper">
-                        <div class="back">
-                            <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                        </div>
-                        <div class="front">
-                            <img src="{% static 'core/assets/identity card front (air).webp' %}" class="card-image" loading="lazy" alt="Identity Card Air" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Earth Card -->
-                <div class="flip-container" style="transition-delay: 0.1s;">
-                    <div class="flipper">
-                        <div class="back">
-                            <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                        </div>
-                        <div class="front">
-                            <img src="{% static 'core/assets/identity card front (earth).webp' %}" class="card-image" loading="lazy" alt="Identity Card Earth" />
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel('identity-carousel', -1)" aria-label="Previous card">&#10094;</button>
+                <div class="identity-cards-grid reveal-up" id="identity-carousel">
+                    
+                    <!-- Air Card -->
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="back">
+                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
+                            </div>
+                            <div class="front">
+                                <img src="{% static 'core/assets/identity card front (air).webp' %}" class="card-image" loading="lazy" alt="Identity Card Air" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Fire Card -->
-                <div class="flip-container" style="transition-delay: 0.2s;">
-                    <div class="flipper">
-                        <div class="back">
-                            <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                        </div>
-                        <div class="front">
-                            <img src="{% static 'core/assets/identity card front (fire).webp' %}" class="card-image" loading="lazy" alt="Identity Card Fire" />
+                    <!-- Earth Card -->
+                    <div class="flip-container" style="transition-delay: 0.1s;">
+                        <div class="flipper">
+                            <div class="back">
+                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
+                            </div>
+                            <div class="front">
+                                <img src="{% static 'core/assets/identity card front (earth).webp' %}" class="card-image" loading="lazy" alt="Identity Card Earth" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Water Card -->
-                <div class="flip-container" style="transition-delay: 0.3s;">
-                    <div class="flipper">
-                        <div class="back">
-                            <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
-                        </div>
-                        <div class="front">
-                            <img src="{% static 'core/assets/identity card front (water).webp' %}" class="card-image" loading="lazy" alt="Identity Card Water" />
+                    <!-- Fire Card -->
+                    <div class="flip-container" style="transition-delay: 0.2s;">
+                        <div class="flipper">
+                            <div class="back">
+                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
+                            </div>
+                            <div class="front">
+                                <img src="{% static 'core/assets/identity card front (fire).webp' %}" class="card-image" loading="lazy" alt="Identity Card Fire" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Water Card -->
+                    <div class="flip-container" style="transition-delay: 0.3s;">
+                        <div class="flipper">
+                            <div class="back">
+                                <img src="{% static 'core/assets/identity card back.webp' %}" class="card-image" loading="lazy" alt="Identity Card Back" />
+                            </div>
+                            <div class="front">
+                                <img src="{% static 'core/assets/identity card front (water).webp' %}" class="card-image" loading="lazy" alt="Identity Card Water" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-btn next" onclick="scrollCarousel('identity-carousel', 1)" aria-label="Next card">&#10095;</button>
             </div>
         </div>
     </section>
@@ -232,56 +236,60 @@
                 </p>
             </div>
 
-            <div class="identity-cards-grid reveal-up">
-                
-                <!-- Air -->
-                <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.1s;">
-                    <div class="flipper">
-                        <div class="back" >
-                            <img src="{% static 'core/assets/air situation card back.webp' %}" class="card-image"  loading="lazy" alt="Air Situation Card Back" />
-                        </div>
-                        <div class="front" >
-                            <img src="{% static 'core/assets/air stiuation card front.webp' %}" class="card-image"  loading="lazy" alt="Air Situation Card Front" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Earth -->
-                <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.2s;">
-                    <div class="flipper">
-                        <div class="back" >
-                            <img src="{% static 'core/assets/earth situation card back.webp' %}" class="card-image"  loading="lazy" alt="Earth Situation Card Back" />
-                        </div>
-                        <div class="front" >
-                            <img src="{% static 'core/assets/earth situation card front.webp' %}" class="card-image"  loading="lazy" alt="Earth Situation Card Front" />
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel('situation-carousel', -1)" aria-label="Previous card">&#10094;</button>
+                <div class="identity-cards-grid reveal-up" id="situation-carousel">
+                    
+                    <!-- Air -->
+                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.1s;">
+                        <div class="flipper">
+                            <div class="back" >
+                                <img src="{% static 'core/assets/air situation card back.webp' %}" class="card-image"  loading="lazy" alt="Air Situation Card Back" />
+                            </div>
+                            <div class="front" >
+                                <img src="{% static 'core/assets/air stiuation card front.webp' %}" class="card-image"  loading="lazy" alt="Air Situation Card Front" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Fire -->
-                <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.3s;">
-                    <div class="flipper">
-                        <div class="back" >
-                            <img src="{% static 'core/assets/fire situation card back.webp' %}" class="card-image"  loading="lazy" alt="Fire Situation Card Back" />
-                        </div>
-                        <div class="front" >
-                            <img src="{% static 'core/assets/fire situation card front.webp' %}" class="card-image"  loading="lazy" alt="Fire Situation Card Front" />
+                    <!-- Earth -->
+                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.2s;">
+                        <div class="flipper">
+                            <div class="back" >
+                                <img src="{% static 'core/assets/earth situation card back.webp' %}" class="card-image"  loading="lazy" alt="Earth Situation Card Back" />
+                            </div>
+                            <div class="front" >
+                                <img src="{% static 'core/assets/earth situation card front.webp' %}" class="card-image"  loading="lazy" alt="Earth Situation Card Front" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Water -->
-                <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.4s;">
-                    <div class="flipper">
-                        <div class="back" >
-                            <img src="{% static 'core/assets/water situation card back.webp' %}" class="card-image"  loading="lazy" alt="Water Situation Card Back" />
-                        </div>
-                        <div class="front" >
-                            <img src="{% static 'core/assets/water situation card front.webp' %}" class="card-image"  loading="lazy" alt="Water Situation Card Front" />
+                    <!-- Fire -->
+                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.3s;">
+                        <div class="flipper">
+                            <div class="back" >
+                                <img src="{% static 'core/assets/fire situation card back.webp' %}" class="card-image"  loading="lazy" alt="Fire Situation Card Back" />
+                            </div>
+                            <div class="front" >
+                                <img src="{% static 'core/assets/fire situation card front.webp' %}" class="card-image"  loading="lazy" alt="Fire Situation Card Front" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Water -->
+                    <div class="flip-container" style="aspect-ratio: 627/864;" style="transition-delay: 0.4s;">
+                        <div class="flipper">
+                            <div class="back" >
+                                <img src="{% static 'core/assets/water situation card back.webp' %}" class="card-image"  loading="lazy" alt="Water Situation Card Back" />
+                            </div>
+                            <div class="front" >
+                                <img src="{% static 'core/assets/water situation card front.webp' %}" class="card-image"  loading="lazy" alt="Water Situation Card Front" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-btn next" onclick="scrollCarousel('situation-carousel', 1)" aria-label="Next card">&#10095;</button>
             </div>
         </div>
     </section>
